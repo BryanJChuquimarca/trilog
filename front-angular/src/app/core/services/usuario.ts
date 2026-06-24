@@ -6,16 +6,16 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class Usuario {
+
   private apiUrl = environment.apiUsuarios;
 
   constructor(private http: HttpClient) { }
 
-  comenzarSesionInvitado(uuid: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/comenzar`, { id: uuid });
+  comenzarSesionInvitado(uuid?: string | null): Observable<any> {
+    const body = uuid ? { id: uuid } : {};
+    return this.http.post(`${this.apiUrl}/comenzar`, body);
   }
 
-  generarUUID(): string {
-    return self.crypto.randomUUID();
-  }
 }

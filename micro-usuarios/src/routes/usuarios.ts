@@ -1,15 +1,17 @@
 import { Router, Request, Response } from 'express';
 import pool from '../config/db';
+import crypto from 'crypto';
 
 const router = Router();
 
 // POST http://localhost:3000/api/usuarios/comenzar
 router.post('/comenzar', async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.body;
+    let { id } = req.body;
 
     if (!id) {
-        res.status(400).json({ error: 'El ID (UUID) del usuario es obligatorio.' });
-        return;
+        id = crypto.randomUUID();
+        const idEnmascarado = `${id.substring(0, 4)}...${id.substring(id.length - 4)}`;
+        console.log('Generado nuevo UUID:', idEnmascarado);
     }
 
     try {
@@ -22,7 +24,8 @@ router.post('/comenzar', async (req: Request, res: Response): Promise<void> => {
             });
             return;
         }
-        console.log('Creado nuevo usuario: ' + id);
+        const idEnmascarado = `${id.substring(0, 4)}...${id.substring(id.length - 4)}`;
+        console.log('Creado nuevo usuario: ' + idEnmascarado);
         const nuevoUsuario = await pool.query(
             'INSERT INTO usuarios (id, nombre_usuario) VALUES ($1, $2) RETURNING *',
             [id, 'Invitado']
