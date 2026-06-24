@@ -1,0 +1,308 @@
+button {
+  all: unset;
+}
+
+.decorative-lines {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.line-item {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #6366f1, transparent);
+  opacity: 0.6;
+  animation: lineExpand 1.2s ease-out;
+}
+
+.line-item-left {
+  width: 2rem;
+  animation-delay: 0s;
+}
+
+.line-item-center {
+  width: 2.5rem;
+  background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6, #6366f1, transparent);
+  animation-delay: 0.1s;
+}
+
+.line-item-right {
+  width: 2rem;
+  animation-delay: 0.2s;
+}
+
+@keyframes lineExpand {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+.separator-line {
+  width: 1px;
+  height: 2rem;
+  background: linear-gradient(180deg, transparent, #bebff5, transparent);
+  opacity: 0.4;
+  animation: fadeInScale 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInScale {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 2rem;
+    opacity: 0.4;
+  }
+}
+
+.dot {
+  margin: 0 0.5rem;
+  opacity: 0.5;
+  animation: dotPulse 2.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  height: 3.5rem;
+  align-items: center;
+  border-radius: 9999px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fafaf9;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.button-item {
+  background-color: transparent;
+}
+
+.button-item .button-bg {
+  border-color: #6366f1;
+  background-color: #6366f1;
+  box-shadow: 0 10px 20px -6px rgba(99, 102, 241, 0.4);
+}
+
+.button-inner,
+.button-inner-hover,
+.button-inner-static {
+  pointer-events: none;
+  display: block;
+}
+
+.button-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.button-inner-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(50%);
+}
+
+.button-bg,
+.button-bg-layer,
+.button-bg-layers {
+  display: block;
+}
+
+.button-bg {
+  overflow: hidden;
+  border-radius: 9999px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.button-bg-layer {
+  border-radius: 9999px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+}
+
+.button-bg-layers {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: -50%;
+  aspect-ratio: 1 / 1;
+  width: max(180%, 9rem);
+}
+
+.button-bg-layer.-color-detalle {
+  background-color: #8b5cf6;
+}
+
+.button-bg-layer.-color-pastel {
+  background-color: #bebff5;
+}
+
+.button-bg-layer.-color-principal {
+  background-color: #6366f1;
+}
+
+.button:hover .button-inner-static {
+  opacity: 0;
+  transform: translateY(-50%);
+  transition:
+    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s linear;
+}
+
+.button:hover .button-inner-hover {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button:hover .button-bg-layer {
+  transition:
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s linear;
+}
+
+.button:hover .button-bg-layer-1 {
+  transform: scale(1);
+}
+
+.button:hover .button-bg-layer-2 {
+  transition-delay: 0.06s;
+  transform: scale(1);
+}
+
+.button:hover .button-bg-layer-3 {
+  transition-delay: 0.12s;
+  transform: scale(1);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -4px rgba(99, 102, 241, 0.4);
+}
+
+.button:hover .button-item .button-bg {
+  box-shadow: 0 12px 32px -4px rgba(99, 102, 241, 0.4);
+}
+
+.button:active {
+  transform: scale(0.96);
+  transition: transform 0.08s ease;
+}
+
+.dot-indicator {
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
+  background-color: #bebff5;
+  opacity: 0.3;
+  transition: all 0.5s ease;
+  animation: dotFadeIn 0.8s ease-out;
+}
+
+.dot-active {
+  width: 2.5px;
+  height: 2.5px;
+  background-color: #6366f1;
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+@keyframes dotFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 0.3;
+  }
+}
+
+p {
+  color: inherit;
+}
+
+.animate-drop-1,
+.animate-drop-2,
+.animate-drop-3 {
+  display: inline-block;
+  animation: textDrop 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.animate-drop-dot-1,
+.animate-drop-dot-2 {
+  animation:
+    textDrop 0.8s cubic-bezier(0.25, 1, 0.5, 1) both,
+    dotPulse 2.5s ease-in-out infinite;
+}
+
+.animate-drop-1 {
+  animation-delay: 0.2s;
+}
+
+.animate-drop-dot-1 {
+  animation-delay: 0.35s;
+}
+
+.animate-drop-2 {
+  animation-delay: 0.5s;
+}
+
+.animate-drop-dot-2 {
+  animation-delay: 0.65s;
+}
+
+.animate-drop-3 {
+  animation-delay: 0.8s;
+}
+
+@keyframes textDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
